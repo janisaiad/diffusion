@@ -1,0 +1,261 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{hyperref}
+\usepackage{subcaption}
+
+\begin{document}
+
+\begin{align}
+\vec{x}_1 &= \vec{m} - \vec{\varepsilon} \\
+\vec{x}_2 &= \vec{m} + \vec{\varepsilon} \\
+\vec{x}_3 &= -\vec{m} - \vec{\varepsilon} \\
+\vec{x}_4 &= -\vec{m} + \vec{\varepsilon}
+\end{align}
+
+\begin{align}
+P_t(\vec{x}) = \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-(\vec{x}-\vec{m} e^{-t})^2/(2 \Gamma_t)}
++e^{-(\vec{x}+\vec{m} e^{-t})^2/(2 \Gamma_t)}
+\right]
+\end{align}
+
+\begin{align}
+\Gamma_t=\sigma^2 e^{-2t} + \Delta_t \\
+\Delta_t = 1-e^{-2t}
+\end{align}
+
+\begin{align}
+P_t(\vec{x}_1) &= \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-((\vec{m}-\vec{\varepsilon})-\vec{m} e^{-t})^2/(2 \Gamma_t)}
++e^{-((\vec{m}-\vec{\varepsilon})+\vec{m} e^{-t})^2/(2 \Gamma_t)}
+\right] \\
+&= \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-(\vec{m}(1-e^{-t})-\vec{\varepsilon})^2/(2 \Gamma_t)}
++e^{-(\vec{m}(1+e^{-t})-\vec{\varepsilon})^2/(2 \Gamma_t)}
+\right]
+\end{align}
+
+\begin{align}
+A_1 &= (\vec{m}(1-e^{-t})-\vec{\varepsilon})^2 \\
+B_1 &= (\vec{m}(1+e^{-t})-\vec{\varepsilon})^2
+\end{align}
+
+\begin{align}
+P_t(\vec{x}_2) &= \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-((\vec{m}+\vec{\varepsilon})-\vec{m} e^{-t})^2/(2 \Gamma_t)}
++e^{-((\vec{m}+\vec{\varepsilon})+\vec{m} e^{-t})^2/(2 \Gamma_t)}
+\right] \\
+&= \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-(\vec{m}(1-e^{-t})+\vec{\varepsilon})^2/(2 \Gamma_t)}
++e^{-(\vec{m}(1+e^{-t})+\vec{\varepsilon})^2/(2 \Gamma_t)}
+\right]
+\end{align}
+
+\begin{align}
+A_2 &= (\vec{m}(1-e^{-t})+\vec{\varepsilon})^2 \\
+B_2 &= (\vec{m}(1+e^{-t})+\vec{\varepsilon})^2
+\end{align}
+
+\begin{align}
+P_t(\vec{x}_3) &= \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-((-\vec{m}-\vec{\varepsilon})-\vec{m} e^{-t})^2/(2 \Gamma_t)}
++e^{-((-\vec{m}-\vec{\varepsilon})+\vec{m} e^{-t})^2/(2 \Gamma_t)}
+\right] \\
+&= \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-(-\vec{m}(1+e^{-t})-\vec{\varepsilon})^2/(2 \Gamma_t)}
++e^{-(-\vec{m}(1-e^{-t})-\vec{\varepsilon})^2/(2 \Gamma_t)}
+\right]
+\end{align}
+
+\begin{align}
+A_3 &= (-\vec{m}(1+e^{-t})-\vec{\varepsilon})^2 \\
+B_3 &= (-\vec{m}(1-e^{-t})-\vec{\varepsilon})^2
+\end{align}
+
+\begin{align}
+P_t(\vec{x}_4) &= \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-((-\vec{m}+\vec{\varepsilon})-\vec{m} e^{-t})^2/(2 \Gamma_t)}
++e^{-((-\vec{m}+\vec{\varepsilon})+\vec{m} e^{-t})^2/(2 \Gamma_t)}
+\right] \\
+&= \frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left[
+e^{-(-\vec{m}(1+e^{-t})+\vec{\varepsilon})^2/(2 \Gamma_t)}
++e^{-(-\vec{m}(1-e^{-t})+\vec{\varepsilon})^2/(2 \Gamma_t)}
+\right]
+\end{align}
+
+\begin{align}
+A_4 &= (-\vec{m}(1+e^{-t})+\vec{\varepsilon})^2 \\
+B_4 &= (-\vec{m}(1-e^{-t})+\vec{\varepsilon})^2
+\end{align}
+
+\begin{align}
+S_i(\vec{x}) = -\frac{x_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( \vec{x} \cdot \vec{m} \, \frac{e^{-t}}{\Gamma_t}\right)
+\end{align}
+
+\begin{align}
+S_i(\vec{x}_1) &= -\frac{(m_i - \varepsilon_i)}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( (\vec{m} - \vec{\varepsilon}) \cdot \vec{m} \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= -\frac{m_i - \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( (|\vec{m}|^2 - \vec{\varepsilon} \cdot \vec{m}) \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= -\frac{m_i - \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( |\vec{m}|^2 \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= -\frac{m_i - \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( \tilde{\mu}^2 d \, \frac{e^{-t}}{\Gamma_t}\right)
+\end{align}
+
+\begin{align}
+S_i(\vec{x}_2) &= -\frac{(m_i + \varepsilon_i)}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( (\vec{m} + \vec{\varepsilon}) \cdot \vec{m} \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= -\frac{m_i + \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( (|\vec{m}|^2 + \vec{\varepsilon} \cdot \vec{m}) \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= -\frac{m_i + \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( \tilde{\mu}^2 d \, \frac{e^{-t}}{\Gamma_t}\right)
+\end{align}
+
+\begin{align}
+S_i(\vec{x}_3) &= -\frac{(-m_i - \varepsilon_i)}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( (-\vec{m} - \vec{\varepsilon}) \cdot \vec{m} \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= \frac{m_i + \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( (-|\vec{m}|^2 - \vec{\varepsilon} \cdot \vec{m}) \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= \frac{m_i + \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( -\tilde{\mu}^2 d \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= \frac{m_i + \varepsilon_i}{\Gamma_t}-m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( \tilde{\mu}^2 d \, \frac{e^{-t}}{\Gamma_t}\right)
+\end{align}
+
+\begin{align}
+S_i(\vec{x}_4) &= -\frac{(-m_i + \varepsilon_i)}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( (-\vec{m} + \vec{\varepsilon}) \cdot \vec{m} \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= \frac{m_i - \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( (-|\vec{m}|^2 + \vec{\varepsilon} \cdot \vec{m}) \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= \frac{m_i - \varepsilon_i}{\Gamma_t}+m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( -\tilde{\mu}^2 d \, \frac{e^{-t}}{\Gamma_t}\right) \\
+&= \frac{m_i - \varepsilon_i}{\Gamma_t}-m_i \frac{e^{-t}}{\Gamma_t}\tanh\left( \tilde{\mu}^2 d \, \frac{e^{-t}}{\Gamma_t}\right)
+\end{align}
+
+\begin{align}
+V(\vec{x}, t) = \frac{1}{2}\sum_i x_i^2 - 2\log P_t(\vec{x})
+\end{align}
+
+\begin{align}
+V(\vec{x}_1, t) &= \frac{1}{2}|\vec{m} - \vec{\varepsilon}|^2 - 2\log P_t(\vec{x}_1) \\
+&= \frac{1}{2}(|\vec{m}|^2 - 2\vec{m}\cdot\vec{\varepsilon} + |\vec{\varepsilon}|^2) - 2\log\left[\frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left(e^{-A_1/(2\Gamma_t)} + e^{-B_1/(2\Gamma_t)}\right)\right] \\
+&= \frac{1}{2}(|\vec{m}|^2 + |\vec{\varepsilon}|^2) - 2\log\left[\frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left(e^{-A_1/(2\Gamma_t)} + e^{-B_1/(2\Gamma_t)}\right)\right]
+\end{align}
+
+\begin{align}
+V(\vec{x}_2, t) &= \frac{1}{2}|\vec{m} + \vec{\varepsilon}|^2 - 2\log P_t(\vec{x}_2) \\
+&= \frac{1}{2}(|\vec{m}|^2 + 2\vec{m}\cdot\vec{\varepsilon} + |\vec{\varepsilon}|^2) - 2\log\left[\frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left(e^{-A_2/(2\Gamma_t)} + e^{-B_2/(2\Gamma_t)}\right)\right] \\
+&= \frac{1}{2}(|\vec{m}|^2 + |\vec{\varepsilon}|^2) - 2\log\left[\frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left(e^{-A_2/(2\Gamma_t)} + e^{-B_2/(2\Gamma_t)}\right)\right]
+\end{align}
+
+\begin{align}
+V(\vec{x}_3, t) &= \frac{1}{2}|-\vec{m} - \vec{\varepsilon}|^2 - 2\log P_t(\vec{x}_3) \\
+&= \frac{1}{2}(|\vec{m}|^2 + 2\vec{m}\cdot\vec{\varepsilon} + |\vec{\varepsilon}|^2) - 2\log\left[\frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left(e^{-A_3/(2\Gamma_t)} + e^{-B_3/(2\Gamma_t)}\right)\right] \\
+&= \frac{1}{2}(|\vec{m}|^2 + |\vec{\varepsilon}|^2) - 2\log\left[\frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left(e^{-A_3/(2\Gamma_t)} + e^{-B_3/(2\Gamma_t)}\right)\right]
+\end{align}
+
+\begin{align}
+V(\vec{x}_4, t) &= \frac{1}{2}|-\vec{m} + \vec{\varepsilon}|^2 - 2\log P_t(\vec{x}_4) \\
+&= \frac{1}{2}(|\vec{m}|^2 - 2\vec{m}\cdot\vec{\varepsilon} + |\vec{\varepsilon}|^2) - 2\log\left[\frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left(e^{-A_4/(2\Gamma_t)} + e^{-B_4/(2\Gamma_t)}\right)\right] \\
+&= \frac{1}{2}(|\vec{m}|^2 + |\vec{\varepsilon}|^2) - 2\log\left[\frac{1}{2\sqrt{2\pi\Gamma_t}^d}\left(e^{-A_4/(2\Gamma_t)} + e^{-B_4/(2\Gamma_t)}\right)\right]
+\end{align}
+
+\begin{align}
+V(q, t) = \frac{1}{2}q^2 - 2\tilde{\mu}^2 \log \cosh\left(q e^{-t} \sqrt{d}\right)
+\end{align}
+
+\begin{align}
+1 - 2\tilde{\mu}^2 d e^{-2t_s} = 0
+\end{align}
+
+\begin{align}
+t_s = \frac{1}{2}\log(2\tilde{\mu}^2 d)
+\end{align}
+
+\begin{align}
+\vec{x} \cdot \vec{m} &= (\pm\vec{m} \pm \vec{\varepsilon}) \cdot \vec{m}\\
+&= \pm|\vec{m}|^2 \pm \varepsilon_{\parallel}|\vec{m}|\\
+&= \pm\tilde{\mu}^2 d \pm \varepsilon_{\parallel}\tilde{\mu}\sqrt{d}
+\end{align}
+
+\begin{align}
+q &= \frac{\vec{x} \cdot \vec{m}}{\sqrt{d}}\\
+&= \pm\tilde{\mu}^2\sqrt{d} \pm \varepsilon_{\parallel}\tilde{\mu}
+\end{align}
+
+\begin{align}
+t_s(\varepsilon_{\parallel}) \approx \frac{1}{2}\log\left(\frac{2\tilde{\mu}^2 d}{1 + 2\varepsilon_{\parallel}\tilde{\mu}/\sqrt{d}}\right)
+\end{align}
+
+\begin{align}
+S_i^+(\vec{x}) = -\frac{x_i}{\Gamma_t} + m_i\frac{e^{-t}}{\Gamma_t}
+\end{align}
+
+\begin{align}
+-dx_i = \left(-\frac{x_i}{\Gamma_t} + m_i\frac{e^{-t}}{\Gamma_t}\right)dt + d\eta_i(t)
+\end{align}
+
+\begin{align}
+\Sigma &= \mathbb{E}[(\vec{x}-\mathbb{E}[\vec{x}])(\vec{x}-\mathbb{E}[\vec{x}])^T] \\
+&= \frac{1}{2}\left[ (\vec{m}-\vec{0})(\vec{m}-\vec{0})^T + (-\vec{m}-\vec{0})(-\vec{m}-\vec{0})^T \right] + \Gamma_t \mathbf{I} \\
+&= \vec{m}\vec{m}^T + \Gamma_t \mathbf{I}
+\end{align}
+
+\begin{align}
+S_i^{\text{cond}+}(\vec{x}) = -\frac{x_i - m_i e^{-t}}{\Gamma_t}
+\end{align}
+
+\begin{align}
+V^{\text{cond}+}(\vec{x}, t) = \frac{1}{2}\sum_i \frac{(x_i - m_i e^{-t})^2}{\Gamma_t} + C
+\end{align}
+
+\begin{align}
+\vec{y} = \vec{x} - \vec{m}
+\end{align}
+
+\begin{align}
+V^{\text{cond}+}(\vec{y} + \vec{m}, t) = \frac{1}{2}\sum_i \frac{(y_i + m_i(1-e^{-t}))^2}{\Gamma_t} + C
+\end{align}
+
+\begin{align}
+V^{\text{cond}+}(\vec{y} + \vec{m}, t) \approx \frac{1}{2}\sum_i \frac{(y_i + m_i)^2}{\Gamma_t} + C
+\end{align}
+
+\begin{align}
+V^{\text{cond}+}(\vec{y} + \vec{m}, t) \approx \frac{1}{2}\sum_i \left(\frac{y_i^2}{\Gamma_t} + \frac{m_i^2}{\Gamma_t}\right) + C
+\end{align}
+
+\begin{align}
+\frac{|\vec{\varepsilon}|^2}{\Gamma_t} = \frac{|\vec{m}|^2}{\Gamma_{t_0}}
+\end{align}
+
+\begin{align}
+|\vec{\varepsilon}|^2 = \frac{\Gamma_t}{\Gamma_{t_0}} \tilde{\mu}^2 d \approx \frac{\tilde{\mu}^2 d}{\Gamma_{t_0}}
+\end{align}
+
+\begin{align}
+|\vec{\varepsilon}| = \tilde{\mu}\sqrt{\frac{d}{\sigma^2}}
+\end{align}
+
+\begin{align}
+V^{\text{cond}+}(\vec{m} + q\vec{\varepsilon}, t) = \frac{1}{2}\frac{q^2|\vec{\varepsilon}|^2}{\Gamma_t} + C
+\end{align}
+
+\begin{align}
+V^{\text{cond}2}(q) = -\log\left[e^{-\frac{(q-\alpha)^2|\vec{\varepsilon}|^2}{2\Gamma_t}} + e^{-\frac{(q+\alpha)^2|\vec{\varepsilon}|^2}{2\Gamma_t}}\right] + C'
+\end{align}
+
+\begin{align}
+\frac{\alpha^2|\vec{\varepsilon}|^2}{\Gamma_t} > 1
+\end{align}
+
+\begin{align}
+t_{s2} = \frac{1}{2}\log\left(\alpha^2|\vec{\varepsilon}|^2\right)
+\end{align}
+
+\begin{align}
+t_{s2} = \frac{1}{2}\log\left(\sigma^2 \cdot \tilde{\mu}^2\frac{d}{\sigma^2}\right) = \frac{1}{2}\log\left(\tilde{\mu}^2 d\right) = t_s
+\end{align}
+
+\begin{align}
+\nabla S(\vec{x}) = -\frac{1}{\Gamma_t}\mathbf{I} + \frac{e^{-2t}}{\Gamma_t^2}\vec{m}\vec{m}^T\left(1 - \tanh^2\left(\vec{x}\cdot\vec{m}\frac{e^{-t}}{\Gamma_t}\right)\right)
+\end{align}
+
+\begin{align}
+\nabla S^{\text{cond}}(\vec{y}) = -\frac{1}{\Gamma_t}\mathbf{I}
+\end{align}
+
+\end{document}

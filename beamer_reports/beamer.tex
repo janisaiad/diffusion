@@ -1,0 +1,450 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8
+
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usecolortheme{whale}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{physics}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+% Color definitions
+\definecolor{myblue}{RGB}{0,114,178}
+\definecolor{myred}{RGB}{213,94,0}
+\definecolor{mygreen}{RGB}{0,158,115}
+
+\title{Dynamic Regimes of Diffusion Models}
+\subtitle{A Volumetric and Temporal Analysis}
+\author{Janis Aiad \and Thomas Pouponneau \and Aurélien Arnoux}
+\institute{EA Topics in ML \\ Ecole Polytechnique \\ \vspace{0.5cm} \small Based on: Biroli et al., Nature Communications 15.1 (2024)}
+\date{\today}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+    \vspace{-1cm}
+    \begin{center}
+        \footnotesize
+       
+    \end{center}
+\end{frame}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+
+\section{Introduction}
+
+
+%% 30 s
+\begin{frame}{Example}
+       
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: car diffusion animation ]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+%% 1 minute
+\begin{frame}{Diffusion Models: Mathematical Foundations}
+    \begin{itemize}
+        \item Dataset of images $x_i \in \mathbb{R}^d$ with d large (e.g. 784 for MNIST)
+         \begin{equation}
+            d \gg 1 \text{ (typically } 10^3-10^4\text{)}
+        \end{equation}
+        \item Stochastic Differential Equations (SDE):
+        \begin{equation}
+            \text{Forward: } dx_t = -\frac{1}{2} x_t dt + \sqrt{2} dW_t \qquad \text{Backward: } dx_t = \left(\frac{1}{2} x_t + 2\nabla \log p_t(x_t)\right) dt + \sqrt{2} dW_t
+        \end{equation}
+        
+        \item Two intial and forwarded probability distributions:
+        \begin{itemize}
+            \item Empirical distribution with $n$ samples (data): $p_0^e(x) = \frac{1}{n} \sum_{i=1}^n \delta(x-x_i)$ and $p_t^e(x) = \frac{1}{n} \sum_{i=1}^n \delta(x-x_i(t))$
+            \item Underlying distribution to learn (manifold): $p_0(x)$ and $p_t(x) = \int dy \; p_0(y) \frac{e^{-(x-ye^{-t})^2/(2\sigma_t^2)}}{(2\pi\sigma_t^2)^{d/2}}$
+        \end{itemize}
+        
+    \end{itemize}
+\end{frame}
+
+%% 1 minute
+\begin{frame}{Motivation}
+    \begin{itemize}
+        
+        \item Gaussian convolution transformation:
+        \begin{equation}
+            p_t(x) = \int dy \; p_0(y) \frac{e^{-(x-ye^{-t})^2/(2\sigma_t^2)}}{(2\pi\sigma_t^2)^{d/2}}
+        \end{equation}
+        where $\sigma_t^2 = 1-e^{-2t}$
+
+        \item Exact score learned hypothesis:
+        \begin{equation}
+            \nabla \log p_t(x) \approx \hat{\nabla} \log p_t^e(x)
+        \end{equation}
+
+        \item Key questions :
+        \begin{itemize}
+            \item Trends of $p_t(x)$ and $p_t^e(x)$ with t and d
+            \item How to determine optimal beginning/stopping times?
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+
+%% 30 s
+\begin{frame}{Goal}
+    \begin{itemize}
+        \item Two main critical times:
+        \begin{itemize}
+            \item $t_s$: Critical time for class separation (gender, lighting ...)
+            \item 2 proofs, 1 with use of score along eigenvectors, 1 with use of covariance and linear separability
+        \end{itemize}
+        
+
+
+
+        \begin{center}
+            \fbox{\parbox{0.8\textwidth}{
+                \centering
+                \vspace{2cm}
+                [Image: $t_s$ animation with mnist classes]
+                \vspace{2cm}
+            }}
+        \end{center}
+        
+
+
+
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Goal}
+
+        \begin{itemize}
+            \item $t_c$: Critical time for image selection
+        \end{itemize}
+           
+        \begin{center}
+            \fbox{\parbox{0.8\textwidth}{
+                \centering
+                \vspace{2cm}
+                [Image: Better viz from the paper in tikz, with true generated data]
+                \vspace{2cm}
+            }}
+        \end{center}
+    \end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\section{Speciation time : crafting your characteristics}
+
+%% 2 minute
+\begin{frame}{Critical Separation Time ($t_s$)}
+    \begin{itemize}
+    
+        \item 2 covariance matrices:
+        
+        \item Covariance C $\approx$ Cov(samples) = diag$(\lambda_1, \lambda_2, \lambda_3, \lambda_4, \epsilon, ..., \epsilon)$ with $\lambda_i \gg \epsilon$ = clusters infos
+        
+        \item Represents when linear separability of classes begin to appear (like embedding space)
+        
+        \item forwarding, we have 
+        \begin{equation}
+            Cov(p_t^e(x)) = E_{x_i \sim p_t^e(x)} [(x_i - \bar{x})(x_i - \bar{x})^T]
+        \end{equation}
+        
+        \item With data, can be estimated with :
+        \begin{equation}
+            Cov(p_t^e(x)) = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})(x_i - \bar{x})^T
+        \end{equation}
+        
+        \item In general, trend:
+        \begin{equation}
+            t_s \approx \frac{1}{2}\log(d)
+        \end{equation}
+    \end{itemize}
+\end{frame}
+    
+
+\begin{frame}{Example curves in 1D/2D}
+    
+    \item Wall potentials - score along eigenvectors
+    \item In 1D/2D: clear observation of 2 critical times
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: Class separation visualization with 2d gaussians and alpha gif]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+
+
+%% 2 minute
+\begin{frame}{Results on Synthetic Data}
+    \begin{itemize}
+        \item In higher dimensions: behavior confirms theoretical predictions
+    \end{itemize}
+    
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: MNIST class separation visualization]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+
+%% 2 minute
+\begin{frame}{Results on MNIST, materials}
+    \begin{itemize}
+        \item Spectral estimate of $t_s$ consistent with the dataset
+        \item Potential wall clearly visible
+    \end{itemize}
+
+    
+    
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: TODO MNIST Linear accuracy as a function of time + theoretical predictions (with integral of erfc(x) + empirical potential given centroids ]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Collapse time : avoid memorization}
+
+\begin{frame}{Example gif}
+    \begin{itemize}
+    \end{itemize}
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: TODO CIFAR 2 images separation visualization]
+            \vspace{2cm}
+        }}
+    \end{center}
+    \begin{itemize}
+        \item $t \leq t_c :$ distribution concentrated to training points = regurgitation
+        \item $t > t_c :$ distribution concentrated to circle around training points
+    \end{itemize}
+\end{frame}
+
+
+%% 1 minute
+\begin{frame}{Critical Collapse Time ($t_c$)}
+    \begin{itemize}
+        \item Idea : stop generation before $t_c$
+        \item Goal : get a "barycenter" between 2 near images
+        \item $p_t^e(x) \propto Z_1 + Z_{2:n}$ where:
+        \begin{itemize}
+            \item $Z_1 \simeq e^{-d/2}$ (large $d$ limit)
+            \item $Z_{2:n}$ concentrates on $e^{d\psi_+(t)}$ with $\psi_+(t)$ increasing in $t$ and $\alpha$
+        \end{itemize}
+        \item When $\alpha = \frac{\log n}{d}$ is small:
+        \begin{equation}
+            t_c \approx \frac{1}{2}\log\left[1+\frac{\sigma^2}{n^{2/d}-1}\right] \approx \frac{d}{\log n}
+        \end{equation}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Critical Collapse Time ($t_c$)}
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: TODO Collapse visualization of stopping between 2 images with CIFAR]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+
+
+%% 2 minute
+\begin{frame}{Critical Collapse Time ($t_c$)}
+\begin{itemize}
+    \item Intuition : more data = more choice to memorize an image !
+\end{itemize}
+\begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: TODO Collapse visualization of stopping when near but not exactly on a 2D point]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+
+%% 1 minute
+\begin{frame}{The Volumetric Argument}
+    \begin{itemize}
+        \item Main idea - use the curse of dimensionality - mass concentrated not around a point to avoid collapsing
+    
+        \item Allow analysis without exact score depends on:
+        \begin{itemize}
+            \item $n$: number of samples
+            \item $d$: data dimension
+            \item Capacity of the model used to learn the score
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%% 1 minute
+\begin{frame}{The Volumetric Argument}
+    
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: 2d gif already made]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+
+%% 1 minute
+\begin{frame}{The Volumetric Argument}
+    
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: TODO MNIST or CIFAR 2 images separation visualization]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\section{Conclusion and what to remember}
+
+%% 1 minute
+\begin{frame}{Summary}
+    \begin{itemize}
+        \item Theory : You can calculate $t_c$ and $t_s$ for any new dataset, get a good time scheme
+        \item Practice : Faster generation after training (HuggingFace)
+    \end{itemize}
+
+    \begin{itemize}
+        \item Volumetric argument applicable beyond the exact empirical score hypothesis
+        \item Deep understanding of model behavior as a function of $n$ and $d$
+    \end{itemize}
+\end{frame}
+
+
+%% 1 minute
+\begin{frame}{Future Directions - Very trendy subject}
+    \begin{itemize}
+        \item Data : hierarchy - distinguishing collapse/speciation
+        \item Autosimilar Timescale for score, 4 walls potential
+        \item Flow matching - same phenomena (cusps)
+        \item Inexact score  = reduce collapse
+        \item very recent results (1 months) on manifolds ($t_c = \frac{d_{manifold}}{\log(n)}$)
+    \end{itemize}
+    
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: DONE Hierarchical visualization with hierarchical tikz + calculations]
+            \vspace{2cm}
+        }}
+    \end{center}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+    \centering
+    \LARGE Thank you for your attention!
+    
+    \vspace{1cm}
+    
+    \large Questions?
+
+    
+    \begin{center}
+        \fbox{\parbox{0.8\textwidth}{
+            \centering
+            \vspace{2cm}
+            [Image: TODO with mathcha.iom Better viz from the paper in tikz, with true generated images and a manifold]
+            \vspace{2cm}
+        }}
+    \end{center}
+
+        
+\end{frame}
+
+\end{document} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
