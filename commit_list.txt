@@ -1,0 +1,85 @@
+49f278d | janisaiad | 2025-03-12 | refactors
+2a68a89 | janisaiad | 2025-03-12 | beamer reports modifs
+2cae03c | janisaiad | 2025-03-12 | refactors and readme
+eab7735 | janisaiad | 2025-03-12 | refactors
+058d6de | janisaiad | 2025-03-12 | refactors
+59aaba2 | janisaiad | 2025-03-12 | refactors
+8e719ac | janisaiad | 2025-03-11 | last beamer changes
+5333c21 | janisaiad | 2025-03-11 | gifsplitting
+3b75acd | janisaiad | 2025-03-11 | added cifar linear & poup ipynb
+0e31831 | janisaiad | 2025-03-11 | beamer cool with the ref
+08c2d73 | janisaiad | 2025-03-09 | now the tikz is very good
+e083f9e | janisaiad | 2025-03-09 | kind of great
+fdff57e | janisaiad | 2025-03-09 | cool viz now
+2ad304d | janisaiad | 2025-03-09 | images are great
+a799b9d | janisaiad | 2025-03-09 | new images and new tikz
+a438126 | janisaiad | 2025-03-09 | sounds good now
+91f8f87 | janisaiad | 2025-03-09 | good viz
+e9f8a6a | janisaiad | 2025-03-09 | better viz with variance 3
+17605e9 | janisaiad | 2025-03-09 | better tikz
+88f09d5 | janisaiad | 2025-03-09 | tested write in tikz
+ec918fb | janisaiad | 2025-03-09 | before writing in tikz
+86b6f18 | janisaiad | 2025-03-09 | tiz is my bro
+7d57d0f | janisaiad | 2025-03-09 | tried recap tikz
+212346d | janisaiad | 2025-03-09 | readme & beamer
+2b3a172 | janisaiad | 2025-03-09 | new gifs with labels for mnist
+4f4e31b | janisaiad | 2025-03-09 | before gif management
+6d763d7 | janisaiad | 2025-03-09 | statsphy argument
+18a6f25 | janisaiad | 2025-03-09 | commit again to save
+c4b6a42 | janisaiad | 2025-03-09 | after modifs & marylou 0.5 comments
+e22331b | janisaiad | 2025-03-07 | beamer modifs
+5bb69ec | janisaiad | 2025-03-06 | workingonthereport
+377f141 | janisaiad | 2025-03-06 | new prezz
+452f66c | janisaiad | 2025-03-06 | added entropy for cifar
+ad84037 | janisaiad | 2025-03-06 | better entropy viz now
+1e2d517 | janisaiad | 2025-03-06 | max time is 2, to be 8
+8c00d79 | janisaiad | 2025-03-06 | more points in log space
+1b510c7 | janisaiad | 2025-03-06 | with more points
+ed76d6f | janisaiad | 2025-03-06 | addeddiffusion2dgifformnist
+c8caa87 | Janis AIAD | 2025-03-04 | new 18.md
+91e8962 | Janis AIAD | 2025-03-04 |  in merging
+d34fd51 | Janis AIAD | 2025-03-04 | Merge branch 'janis-gpu' into janis
+c168d4c | janisaiad | 2025-03-04 | modifs notes
+9cc7bed | janisaiad | 2025-03-04 | new potential viz
+7a56ca2 | janisaiad | 2025-03-04 | before new potential
+e6065a5 | janisaiad | 2025-03-04 | with autosimilarity
+9773893 | janisaiad | 2025-03-04 | working on potentials
+8db49df | janisaiad | 2025-03-03 | notes for seance added
+48693c0 | Janis AIAD | 2025-03-03 | Merge branch 'janis-gpu' of gitlab.binets.fr:janis.aiad/eap2-diffusion into janis-gpu
+075d9b9 | Janis AIAD | 2025-03-03 | commit seance
+979b9f7 | janisaiad | 2025-03-02 | gitignore
+380be8a | janisaiad | 2025-03-02 | gitignore
+0d0e617 | janisaiad | 2025-03-02 | readme modifs to test
+b1ea283 | janisaiad | 2025-03-02 | fixed gitignore issues
+b221611 | janisaiad | 2025-03-02 | modifs gitmodules
+d315fe2 | janisaiad | 2025-03-02 | modified launch sh
+7b95e8f | janisaiad | 2025-02-18 | added some py files
+8293e51 | janisaiad | 2025-02-18 | added tc_vs_alpha
+6643624 | janisaiad | 2025-02-18 | added viz
+48a1367 | Janis AIAD | 2025-02-18 | added notes
+97ffc80 | janisaiad | 2025-02-18 | added diffusion heatmap
+5202885 | janisaiad | 2025-02-18 | added some manifold viz
+2a9899f | janisaiad | 2025-02-18 | added non linearity vizualization
+12df049 | janisaiad | 2025-02-18 | other gifs
+2629ee8 | janisaiad | 2025-02-18 | gif added
+a9b370b | janisaiad | 2025-02-18 | before animation
+393af19 | janisaiad | 2025-02-18 | added cupy tests
+9366385 | janisaiad | 2025-02-18 | refactoring and cupy add
+e2dfbb8 | janisaiad | 2025-02-16 | notes
+fe2e4c9 | janisaiad | 2025-02-14 | cuda refactoring
+9090e77 | janisaiad | 2025-02-14 | gitignore and refactoring
+4a82bfe | janisaiad | 2025-02-14 | added texsource
+622522e | janisaiad | 2025-02-14 | added jupytext and cuda to gaussian mixtures .py
+28a77fc | janisaiad | 2025-02-14 | understood loader and diffusion
+496f7c5 | janisaiad | 2025-02-14 | changed device on from cuda:0 to cuda
+ff1f4b5 | janisaiad | 2025-02-14 | torch tests added
+d714852 | janisaiad | 2025-02-14 | added tex for explanation
+102bd76 | Janis AIAD | 2025-02-11 | added refs
+e438521 | janisaiad | 2025-02-03 | added janis gpu and former code
+f933969 | janisaiad | 2025-02-03 | main commit
+4d7862b | janisaiad | 2025-02-03 | tried to install torch etc ..
+90eeec3 | Janis AIAD | 2025-02-03 | Remove git tracking of Dynamical-Regimes-of-Diffusion-Models while keeping the files
+7264277 | janisaiad | 2025-02-03 | gitignore
+c09576c | janisaiad | 2025-02-03 | commit
+c63646f | janisaiad | 2025-02-03 | added sources and init
+4179f9b | Janis AIAD | 2025-01-28 | Initial commit
